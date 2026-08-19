@@ -1,632 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VentureForge - High-Revenue Business Ideas & Launchpad</title>
-    <meta name="description" content="Explore high-margin, scalable business ideas. Use our interactive finder quiz, profit calculators, and launch toolkits to kickstart your next venture.">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bharti ENT Hospital | Vadodara & Halol</title>
+  <style>
+    /* Branding & Palette from Photo */
+    :root {
+      --primary-dark: #0f172a;
+      --navy-blue: #1e293b;
+      --accent-green: #22c55e;
+      --accent-orange: #f97316;
+      --accent-teal: #06b6d4;
+      --light-bg: #f8fafc;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    header {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icons {
+      display: flex;
+      gap: 4px;
+    }
+
+    .circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+    }
+    .circle.green { background-color: var(--accent-green); }
+    .circle.orange { background-color: var(--accent-orange); }
+    .circle.teal { background-color: var(--accent-teal); }
+
+    .brand-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .brand-title span {
+      font-weight: 300;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .location-tag {
+      font-size: 0.75rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-teal);
+    }
+
+    .btn-header {
+      background: var(--accent-orange);
+      color: var(--white);
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--navy-blue) 100%);
+      color: var(--white);
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-green);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid var(--accent-teal);
+      cursor: pointer;
+    }
+
+    /* Revenue Generator Banner */
+    .revenue-banner {
+      background: var(--white);
+      margin: -2rem 5% 3rem 5%;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      padding: 1.5rem;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .action-card {
+      padding: 1rem;
+      border-left: 4px solid var(--accent-teal);
+      background: #f8fafc;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .action-card.vip {
+      border-color: var(--accent-orange);
+      background: #fff7ed;
+    }
+
+    .action-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .action-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .action-link {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+
+    /* General Section Layouts */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    /* SERVICES SECTION */
+    .services-container {
+      padding: 4rem 5%;
+      background: var(--white);
+    }
+
+    .service-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 2rem;
+      background: var(--light-bg);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-teal);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .service-btn {
+      color: var(--accent-teal);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    /* Package Grid */
+    .packages-container {
+      padding: 4rem 5%;
+    }
+
+    .package-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .package-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: -30px;
+      background: var(--accent-orange);
+      color: white;
+      padding: 4px 30px;
+      transform: rotate(45deg);
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 1rem 0;
+    }
+
+    .price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .package-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .package-features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.95rem;
+    }
+
+    /* Hospital E-Store */
+    .store-section {
+      background-color: var(--white);
+      padding: 4rem 5%;
+    }
+
+    .product-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .product-price {
+      color: var(--accent-green);
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+
+    /* Modal Form */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+    }
+
+    footer {
+      background: var(--primary-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-btns { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                <span>VentureForge</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="#ideas" class="nav-link active" id="lnk-ideas">Ideas Explorer</a></li>
-                <li><a href="#quiz" class="nav-link" id="lnk-quiz">Match Finder</a></li>
-                <li><a href="#calculator" class="nav-link" id="lnk-calculator">Profit Calculator</a></li>
-                <li><a href="#toolkit" class="nav-link" id="lnk-toolkit">Launch Toolkit</a></li>
-            </ul>
-            <div class="nav-actions" style="display: flex; align-items: center;">
-                <a href="tel:+18005550199" class="nav-link" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; margin-right: 1.5rem; text-decoration: none;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--accent);">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    <span class="call-no-text">+91 9879957704</span>
-                </a>
-                <a href="https://wa.me/+91 9879957704?text=Hi%2C%20I%20am%20interested%20in%20launching%20a%20high-revenue%20business%20idea!" class="nav-link" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; margin-right: 1.5rem; text-decoration: none;" aria-label="Chat on WhatsApp">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #25d366;">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.218 3.078.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    <span class="whatsapp-no-text">WhatsApp</span>
-                </a>
-                <a href="#quiz" class="btn btn-accent btn-sm">Find Your Venture</a>
-            </div>
-        </div>
-    </header>
+  <!-- Navigation -->
+  <header>
+    <div class="logo-container">
+      <div class="logo-icons">
+        <div class="circle green"></div>
+        <div class="circle orange"></div>
+        <div class="circle teal"></div>
+      </div>
+      <div>
+        <div class="brand-title">bharti <span>ENT Hospital</span></div>
+        <div class="location-tag">Vadodara • Halol</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#packages">Health Packages</a>
+      <a href="#store">Care Store</a>
+      <a href="javascript:void(0)" class="btn-header" onclick="openModal('VIP Express OPD')">Fast-Track OPD</a>
+    </nav>
+  </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section" id="hero">
-            <div class="hero-content">
-                <div class="section-tag">Empowering Builders &amp; Solopreneurs</div>
-                <h1>Discover High-Revenue <span>Business Ideas</span> Built for Scale.</h1>
-                <p class="hero-description">
-                    Skip the generic brainstorms. Explore curated, high-margin business models with step-by-step launch blueprints, revenue estimation engines, and automated checklists.
-                </p>
-                <div class="hero-cta">
-                    <a href="#ideas" class="btn btn-accent">Explore Blueprints</a>
-                    <a href="#quiz" class="btn btn-outline">Take Matchmaker Quiz</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-value">80%+</span>
-                        <span class="stat-label">Avg. Profit Margins</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">&lt;$500</span>
-                        <span class="stat-label">Initial Startup Capital</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">14 Days</span>
-                        <span class="stat-label">Target Launch Time</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-glow-sphere"></div>
-                <div class="collage-container">
-                    <!-- Card 1 -->
-                    <div class="collage-card glass-panel c-card-1">
-                        <div class="c-card-header">
-                            <span class="c-card-title">AI Automation Hub</span>
-                            <span class="c-badge c-badge-cyan">B2B</span>
-                        </div>
-                        <div class="c-card-metrics">
-                            <div>
-                                <div class="idea-stat-lbl">Profit Margin</div>
-                                <div class="c-metric-val">85%</div>
-                            </div>
-                            <div>
-                                <div class="idea-stat-lbl">Launch Speed</div>
-                                <div class="c-metric-val">10 days</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="collage-card glass-panel c-card-2">
-                        <div class="c-card-header">
-                            <span class="c-card-title">Premium Micro-SaaS</span>
-                            <span class="c-badge c-badge-violet">Tech</span>
-                        </div>
-                        <div class="c-card-metrics">
-                            <div>
-                                <div class="idea-stat-lbl">MRR Potential</div>
-                                <div class="c-metric-val">$8.5K</div>
-                            </div>
-                            <div>
-                                <div class="idea-stat-lbl">Investment</div>
-                                <div class="c-metric-val">Low</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 (Featured Center) -->
-                    <div class="collage-card glass-panel c-card-3">
-                        <div class="c-card-header">
-                            <span class="c-card-title" style="color: var(--accent);">Specialized Agency</span>
-                            <span class="c-badge c-badge-cyan">Service</span>
-                        </div>
-                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Solve one specific bottleneck for high-value corporate clients.</p>
-                        <div class="c-card-metrics">
-                            <div>
-                                <div class="idea-stat-lbl">Monthly Cashflow</div>
-                                <div class="c-metric-val" style="color: var(--success);">$12,000+</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- Hero Header -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Advanced Ear, Nose & Throat Care</h1>
+      <p>Providing world-class microsurgery, hearing solutions, and sinus care in Vadodara & Halol with state-of-the-art diagnostic technology.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal('Standard Appointment')">Book Appointment</button>
+        <button class="btn-secondary" onclick="openModal('Tele-Consultation')">Video Consultation</button>
+      </div>
+    </div>
+  </section>
 
-        <!-- Section: Interactive Match Finder Quiz -->
-        <section class="section" id="quiz">
-            <div class="section-header">
-                <span class="section-tag">Matchmaking AI Engine</span>
-                <h2 class="section-title">Find Your Perfect Business Model</h2>
-                <p class="section-subtitle">Answer three quick questions about your budget, strengths, and available time, and our matching algorithm will recommend the ideal setup for you.</p>
-            </div>
+  <!-- Hospital Revenue Actions -->
+  <div class="revenue-banner">
+    <div class="action-card vip">
+      <h4>⚡ Fast-Track VIP OPD</h4>
+      <p>Priority access to bypass waiting times.</p>
+      <a href="javascript:void(0)" class="action-link" onclick="openModal('VIP OPD Pass')">Book Priority Pass →</a>
+    </div>
+    <div class="action-card">
+      <h4>📹 Tele-ENT Consultation</h4>
+      <p>Consult expert surgeons virtually.</p>
+      <a href="javascript:void(0)" class="action-link" onclick="openModal('Tele-Consultation')">Start Video Call →</a>
+    </div>
+    <div class="action-card">
+      <h4>👂 Hearing Screening</h4>
+      <p>Pure tone audiometry & diagnostic tests.</p>
+      <a href="#packages" class="action-link">Explore Packages →</a>
+    </div>
+  </div>
 
-            <div class="quiz-container glass-panel">
-                <div class="quiz-progress-bar">
-                    <div class="quiz-progress-fill" id="quiz-progress"></div>
-                </div>
-
-                <div class="quiz-steps" id="quiz-steps-wrapper">
-                    <!-- Step 1: Capital -->
-                    <div class="quiz-step" data-step="0">
-                        <h3 class="quiz-question">1. What is your available startup budget?</h3>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-metric="capital" data-val="low">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Minimal Budget (&lt; $500)</div>
-                                    <div class="quiz-option-desc">Ideal for service-based or organic content ventures.</div>
-                                </div>
-                            </button>
-                            <button class="quiz-option" data-metric="capital" data-val="mid">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Moderate Capital ($500 - $2,500)</div>
-                                    <div class="quiz-option-desc">Perfect for software, paid tools, or branding designs.</div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Strengths -->
-                    <div class="quiz-step" data-step="1">
-                        <h3 class="quiz-question">2. What describes your core strength?</h3>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-metric="skill" data-val="tech">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Technical &amp; Coding</div>
-                                    <div class="quiz-option-desc">Building software, scripting, APIs, database architectures.</div>
-                                </div>
-                            </button>
-                            <button class="quiz-option" data-metric="skill" data-val="sales">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Sales &amp; Outreach</div>
-                                    <div class="quiz-option-desc">Closing deals, cold outreach, marketing strategies.</div>
-                                </div>
-                            </button>
-                            <button class="quiz-option" data-metric="skill" data-val="creative">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.5 1.5"></path><path d="M14 14l3 3"></path></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Content &amp; Creative</div>
-                                    <div class="quiz-option-desc">Writing copy, designing visual resources, producing media.</div>
-                                </div>
-                            </button>
-                            <button class="quiz-option" data-metric="skill" data-val="operations">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Systems &amp; Operations</div>
-                                    <div class="quiz-option-desc">Structuring checklists, running tools, scaling active setups.</div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Hours -->
-                    <div class="quiz-step" data-step="2">
-                        <h3 class="quiz-question">3. How many hours can you commit weekly?</h3>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-metric="hours" data-val="part">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Side Hustle (10-15 Hours)</div>
-                                    <div class="quiz-option-desc">Perfect to fit around your existing 9-to-5 setup.</div>
-                                </div>
-                            </button>
-                            <button class="quiz-option" data-metric="hours" data-val="full">
-                                <div class="quiz-option-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                                </div>
-                                <div>
-                                    <div class="quiz-option-title">Full Force (30+ Hours)</div>
-                                    <div class="quiz-option-desc">Ready to build immediately and hyper-scale.</div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quiz-nav-row">
-                    <button class="btn btn-outline" id="quiz-back-btn" disabled>Back</button>
-                    <button class="btn btn-primary" id="quiz-next-btn" disabled>Next Step</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Business Ideas Database Grid -->
-        <section class="section" id="ideas">
-            <div class="section-header">
-                <span class="section-tag">Ventures Directory</span>
-                <h2 class="section-title">The High-Revenue Database</h2>
-                <p class="section-subtitle">Filter through verified business structures. Select any card to unlock the setup requirements, technical stacks, and monetization blueprints.</p>
-            </div>
-
-            <!-- Filters Toolbar -->
-            <div class="filter-bar glass-panel">
-                <div class="search-wrapper">
-                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="text" class="search-input" id="search-bar" placeholder="Search ideas, skills, stacks...">
-                </div>
-
-                <div class="filter-groups">
-                    <select class="filter-select" id="filter-industry">
-                        <option value="all">All Industries</option>
-                        <option value="tech">Software &amp; Tech</option>
-                        <option value="service">B2B Services</option>
-                        <option value="content">Content &amp; Assets</option>
-                    </select>
-
-                    <select class="filter-select" id="filter-capital">
-                        <option value="all">Startup Budget</option>
-                        <option value="low">Minimal (&lt;$500)</option>
-                        <option value="mid">Moderate ($500-$2.5K)</option>
-                    </select>
-
-                    <select class="filter-select" id="filter-difficulty">
-                        <option value="all">All Skill Levels</option>
-                        <option value="easy">No-Code / Friendly</option>
-                        <option value="medium">Medium / Tech-ish</option>
-                        <option value="hard">Advanced Technical</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Grid Container for Business Cards -->
-            <div class="ideas-grid" id="ideas-grid-container">
-                <!-- Dynamically Populated by app.js -->
-            </div>
-        </section>
-
-        <!-- Section: Interactive Revenue & Break-Even Calculator -->
-        <section class="section" id="calculator">
-            <div class="section-header">
-                <span class="section-tag">Venture Analytics</span>
-                <h2 class="section-title">Revenue &amp; Break-Even Simulator</h2>
-                <p class="section-subtitle">Configure pricing structures and expenses to instantly visualize your cash-flow projection, operating profit margins, and break-even trajectories.</p>
-            </div>
-
-            <div class="calc-container">
-                <!-- Inputs Box -->
-                <div class="calc-inputs glass-panel">
-                    <h3 class="calc-title">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="15" y2="17"></line><line x1="12" y1="9" x2="12" y2="17"></line>
-                        </svg>
-                        Financial Assumptions
-                    </h3>
-
-                    <!-- Sliders -->
-                    <div class="slider-group">
-                        <div class="slider-header">
-                            <label class="slider-label" for="input-price">Average Product/Service Price ($)</label>
-                            <span class="slider-value" id="val-price">$1,500</span>
-                        </div>
-                        <input type="range" class="range-slider" id="input-price" min="20" max="10000" step="50" value="1500">
-                    </div>
-
-                    <div class="slider-group">
-                        <div class="slider-header">
-                            <label class="slider-label" for="input-volume">Target Monthly Customers / Sales</label>
-                            <span class="slider-value" id="val-volume">8</span>
-                        </div>
-                        <input type="range" class="range-slider" id="input-volume" min="1" max="150" step="1" value="8">
-                    </div>
-
-                    <div class="slider-group">
-                        <div class="slider-header">
-                            <label class="slider-label" for="input-cac">Estimated CAC (Acquisition Cost per Client)</label>
-                            <span class="slider-value" id="val-cac">$250</span>
-                        </div>
-                        <input type="range" class="range-slider" id="input-cac" min="0" max="2500" step="10" value="250">
-                    </div>
-
-                    <div class="slider-group">
-                        <div class="slider-header">
-                            <label class="slider-label" for="input-overhead">Fixed Monthly Overhead (Stack, Software)</label>
-                            <span class="slider-value" id="val-overhead">$150</span>
-                        </div>
-                        <input type="range" class="range-slider" id="input-overhead" min="0" max="3000" step="25" value="150">
-                    </div>
-                </div>
-
-                <!-- Outputs Panel -->
-                <div class="calc-outputs glass-panel">
-                    <div>
-                        <h3 class="calc-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 0.5rem;">
-                            <span style="display: inline-flex; align-items: center; gap: 0.75rem;">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success);">
-                                    <line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                </svg>
-                                Monthly Projections
-                            </span>
-                            <button class="btn btn-outline btn-sm" id="calc-pdf-btn" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">Export PDF</button>
-                        </h3>
-                        <div class="metrics-summary-grid">
-                            <div class="metric-card">
-                                <div class="m-lbl">Total Gross Revenue</div>
-                                <div class="m-val" id="metric-gross">$12,000</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="m-lbl">Total Acquisition Cost</div>
-                                <div class="m-val" id="metric-marketing">$2,000</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="m-lbl">Net Monthly Profit</div>
-                                <div class="m-val m-highlight" id="metric-net">$9,850</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="m-lbl">Operating Margin</div>
-                                <div class="m-val m-success" id="metric-margin">82%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic SVG Visual Graph -->
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <span>$ Financials Baseline</span>
-                            <span>Target Break-Even Client: <strong id="metric-breakeven" style="color: var(--accent);">1.3</strong></span>
-                        </div>
-                        <svg class="svg-chart-element" id="chart-svg" viewBox="0 0 360 150">
-                            <!-- Helper Lines -->
-                            <line x1="40" y1="120" x2="340" y2="120" class="chart-axis-line"></line>
-                            <line x1="40" y1="20" x2="40" y2="120" class="chart-axis-line"></line>
-                            
-                            <!-- Graph Polygons/Bars filled dynamically -->
-                            <rect class="chart-cost-bar" x="50" y="50" width="40" height="70" id="chart-cost-bar-1"></rect>
-                            <rect class="chart-revenue-bar" x="110" y="50" width="40" height="70" id="chart-revenue-bar-1"></rect>
-                            
-                            <!-- Dynamic Profit Projection Plot Path -->
-                            <path class="chart-profit-line" d="M 40 120 Q 150 70 340 30" id="chart-path"></path>
-                            
-                            <!-- Break-even intersection circle indicator -->
-                            <circle cx="150" cy="70" r="6" fill="var(--accent)" stroke="#ffffff" stroke-width="2" id="chart-breakeven-indicator"></circle>
-                        </svg>
-                        <div class="chart-legend">
-                            <div class="legend-item"><span class="legend-dot dot-cost"></span><span>CAC + Overhead</span></div>
-                            <div class="legend-item"><span class="legend-dot dot-revenue"></span><span>Gross Income</span></div>
-                            <div class="legend-item"><span class="legend-dot dot-net"></span><span>Net Gain</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Checklist Toolkit (localStorage integration) -->
-        <section class="section" id="toolkit">
-            <div class="section-header">
-                <span class="section-tag">Action Plan</span>
-                <h2 class="section-title">Solopreneur Launch Checklist</h2>
-                <p class="section-subtitle">Interactive 5-step roadmap to turn business ideas into operational startups. Check tasks as you achieve them. Your progress persists in real time.</p>
-            </div>
-
-            <div class="checklist-section-wrapper">
-                <!-- Checklist List -->
-                <div class="checklist-card glass-panel">
-                    <div class="checklist-header">
-                        <div class="checklist-title">Operational Milestones</div>
-                        
-                        <!-- Dynamic Circular SVGs Progress -->
-                        <div class="progress-circular-container">
-                            <svg class="progress-circle-svg" viewBox="0 0 64 64">
-                                <circle class="circle-bg" cx="32" cy="32" r="28"></circle>
-                                <circle class="circle-progress" id="circular-progress-bar" cx="32" cy="32" r="28"></circle>
-                                <text class="circle-text" x="32" y="36" text-anchor="middle" id="circular-progress-text">0%</text>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="checklist-items">
-                        <div class="checklist-item" data-index="0" id="chk-0">
-                            <div class="checklist-checkbox">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="checklist-content">
-                                <span class="checklist-item-title">1. Define &amp; Narrow Your Niche Target</span>
-                                <span class="checklist-item-desc">Pinpoint exactly who has the highest financial pain point. Interview 3 prospects before building.</span>
-                            </div>
-                        </div>
-
-                        <div class="checklist-item" data-index="1" id="chk-1">
-                            <div class="checklist-checkbox">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="checklist-content">
-                                <span class="checklist-item-title">2. Set Up Professional Email &amp; Landing Page</span>
-                                <span class="checklist-item-desc">Secure a clean domain. Build a single-page landing site emphasizing value proposition, with an intake form.</span>
-                            </div>
-                        </div>
-
-                        <div class="checklist-item" data-index="2" id="chk-2">
-                            <div class="checklist-checkbox">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="checklist-content">
-                                <span class="checklist-item-title">3. Structure Your Premium MVP Offer</span>
-                                <span class="checklist-item-desc">Design a concrete package (what they get, timelines, and outcomes) rather than billing hourly rates.</span>
-                            </div>
-                        </div>
-
-                        <div class="checklist-item" data-index="3" id="chk-3">
-                            <div class="checklist-checkbox">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="checklist-content">
-                                <span class="checklist-item-title">4. Deploy High-Volume Cold Outreach Campaigns</span>
-                                <span class="checklist-item-desc">Reach out to 25 target leads daily via personalized channels (LinkedIn, Cold email) offering quick leverage reviews.</span>
-                            </div>
-                        </div>
-
-                        <div class="checklist-item" data-index="4" id="chk-4">
-                            <div class="checklist-checkbox">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="checklist-content">
-                                <span class="checklist-item-title">5. Deliver and Secure Long-Term Retainers</span>
-                                <span class="checklist-item-desc">Overdeliver for early clients to secure proof of results, testimonies, and transition them into Monthly Retainers.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Launch Guide Tips Sidebar -->
-                <div class="checklist-summary-card glass-panel">
-                    <div class="checklist-tips">
-                        <h4>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line>
-                            </svg>
-                            Solopreneur Rules for Rapid Launch
-                        </h4>
-                        <ul class="tips-list">
-                            <li class="tip-item">
-                                <span class="tip-bullet">1.</span>
-                                <span><strong>Sell first, build later.</strong> Do not write complex lines of code or buy stock until you secure cash commitments or active pre-orders.</span>
-                            </li>
-                            <li class="tip-item">
-                                <span class="tip-bullet">2.</span>
-                                <span><strong>Price for profit margins.</strong> Avoid high capital/low margin platforms. Target 75%+ margins so a few customers sustain you.</span>
-                            </li>
-                            <li class="tip-item">
-                                <span class="tip-bullet">3.</span>
-                                <span><strong>Productize your output.</strong> Deliver standardized tasks/projects. It prevents scope creep and allows scaling with freelancers.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                        <button class="btn btn-outline btn-sm" style="flex: 1;" id="reset-checklist-btn">Reset Checkboxes</button>
-                        <button class="btn btn-accent btn-sm" style="flex: 1;" id="checklist-pdf-btn">Export PDF</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal Popup for Business Idea Detail Blueprints -->
-    <div class="modal-overlay" id="blueprint-modal">
-        <div class="modal-content glass-panel">
-            <button class="modal-close" id="modal-close-btn">&times;</button>
-            
-            <div class="modal-header">
-                <div class="modal-header-icon" id="m-icon-box">
-                    <!-- Dynamic standard icon SVG -->
-                </div>
-                <div class="modal-header-meta" style="flex-grow: 1;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <h2 id="m-title">Business Idea Name</h2>
-                            <div class="modal-meta-badges" style="margin-top: 0.25rem;">
-                                <span class="tag tag-margin" id="m-margin">80% Margin</span>
-                                <span class="tag tag-capital" id="m-capital">Low Capital</span>
-                            </div>
-                        </div>
-                        <button class="btn btn-accent btn-sm" id="modal-pdf-btn" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;">Export PDF</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-body">
-                <!-- Left Main Panel -->
-                <div>
-                    <div class="modal-blueprint-section">
-                        <h4>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                            Core Concept
-                        </h4>
-                        <p id="m-concept">Detailed description of the business model and why it holds high margin potential.</p>
-                    </div>
-
-                    <div class="modal-blueprint-section">
-                        <h4>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                            Startup Tech Stack &amp; Tools
-                        </h4>
-                        <div class="modal-stack-list" id="m-stack-list">
-                            <!-- Dynamic stack tags -->
-                        </div>
-                    </div>
-
-                    <div class="modal-blueprint-section">
-                        <h4>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            14-Day Launch Roadmap
-                        </h4>
-                        <div class="blueprint-steps" id="m-steps-list">
-                            <!-- Dynamic steps -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Sidebar Panel -->
-                <div class="modal-sidebar">
-                    <div class="side-box">
-                        <div class="side-box-title">Revenue potential</div>
-                        <div class="side-box-value" id="m-income">$8,500/mo</div>
-                        <p style="font-size: 0.75rem; color: var(--text-dark); margin-top: 0.25rem;">Estimated with 5 active clients/re-orders.</p>
-                    </div>
-
-                    <div class="side-box">
-                        <div class="side-box-title">Difficulty Rating</div>
-                        <div class="side-box-value" id="m-difficulty">Medium</div>
-                    </div>
-
-                    <div class="side-box">
-                        <div class="side-box-title">Monetization Models</div>
-                        <ul class="side-box-list" id="m-monetization">
-                            <!-- Dynamic monetization bullets -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- NEW SERVICES SECTION -->
+  <section id="services" class="services-container">
+    <div class="section-title">
+      <h2>Our Specialized ENT Services</h2>
+      <p>Comprehensive diagnostic, surgical, and therapeutic treatments for all ENT conditions.</p>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <a href="#" class="footer-logo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                <span>VentureForge</span>
-            </a>
-            <span class="footer-text">&copy; 2026 VentureForge Hub. | Call Us: <a href="tel:+18005550199" style="color: var(--accent); text-decoration: none;">+1 (800) 555-0199</a></span>
-            <div class="footer-links">
-                <a href="#ideas" class="footer-link">Explorer</a>
-                <a href="#quiz" class="footer-link">Finder</a>
-                <a href="#calculator" class="footer-link">Calculator</a>
-            </div>
+    <div class="grid-3">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-icon">👂</div>
+        <h3>Otology & Micro Ear Surgery</h3>
+        <p>Advanced treatment for eardrum perforation, chronic ear infections, tympanoplasty, mastoidectomy, and hearing reconstruction.</p>
+        <button class="service-btn" onclick="openModal('Micro Ear Surgery Consultation')">Book Consultation →</button>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-icon">👃</div>
+        <h3>FESS & Endoscopic Sinus Care</h3>
+        <p>Minimally invasive Functional Endoscopic Sinus Surgery (FESS) for chronic sinusitis, nasal polyps, and deviated nasal septum (DNS).</p>
+        <button class="service-btn" onclick="openModal('Sinus Care Consultation')">Book Consultation →</button>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-icon">🗣️</div>
+        <h3>Laryngology & Voice Clinic</h3>
+        <p>Specialized diagnosis and micro-laryngeal surgery for vocal cord polyps, hoarseness, throat pain, and swallowing disorders.</p>
+        <button class="service-btn" onclick="openModal('Voice & Throat Consultation')">Book Consultation →</button>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <div class="service-icon">🔊</div>
+        <h3>Audiology & Speech Therapy</h3>
+        <p>Complete hearing evaluations, pure tone audiometry, digital hearing aid fitting, and speech therapy for children & adults.</p>
+        <button class="service-btn" onclick="openModal('Audiology & Hearing Test')">Book Test →</button>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service-card">
+        <div class="service-icon">💤</div>
+        <h3>Snoring & Sleep Apnea Surgery</h3>
+        <p>Comprehensive sleep endoscopy, airway evaluation, and coblation-assisted surgical solutions for obstructive sleep apnea.</p>
+        <button class="service-btn" onclick="openModal('Snoring & Sleep Consultation')">Book Consultation →</button>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="service-card">
+        <div class="service-icon">👶</div>
+        <h3>Pediatric ENT Care</h3>
+        <p>Gentle and specialized care for children dealing with tonsillitis, adenoids, glue ear, and congenital speech or hearing issues.</p>
+        <button class="service-btn" onclick="openModal('Pediatric ENT Appointment')">Book Appointment →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preventive Packages -->
+  <section id="packages" class="packages-container">
+    <div class="section-title">
+      <h2>Specialized Wellness Packages</h2>
+      <p>High-margin preventive screening designed for early detection.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="package-card">
+        <h3>Sinus & Allergy Shield</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">For chronic headaches & nasal congestion</p>
+        <div class="price">₹1,499 <span>/ person</span></div>
+        <ul class="package-features">
+          <li>✔ Diagnostic Nasal Endoscopy</li>
+          <li>✔ Specialist Consultation</li>
+          <li>✔ Allergic Rhinitis Screening</li>
+          <li>✔ Digital Report & Prescription</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;" onclick="openModal('Sinus & Allergy Package')">Book Package</button>
+      </div>
+
+      <div class="package-card">
+        <div class="badge">MOST POPULAR</div>
+        <h3>Total Hearing Checkup</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Comprehensive ear & hearing evaluation</p>
+        <div class="price">₹2,199 <span>/ person</span></div>
+        <ul class="package-features">
+          <li>✔ Pure Tone Audiometry (PTA)</li>
+          <li>✔ Tympanometry Assessment</li>
+          <li>✔ Otoscopic Examination</li>
+          <li>✔ Complimentary Hearing Aid Trial</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;" onclick="openModal('Total Hearing Checkup')">Book Package</button>
+      </div>
+
+      <div class="package-card">
+        <h3>Snoring & Sleep Apnea Care</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">For snoring & airway obstruction</p>
+        <div class="price">₹2,999 <span>/ person</span></div>
+        <ul class="package-features">
+          <li>✔ Flexible Airway Endoscopy</li>
+          <li>✔ Sleep Disorder Consultation</li>
+          <li>✔ Oxygen Saturation Evaluation</li>
+          <li>✔ Treatment & Airway Management</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;" onclick="openModal('Sleep Apnea Package')">Book Package</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hospital E-Store -->
+  <section id="store" class="store-section">
+    <div class="section-title">
+      <h2>ENT Care Products & Equipment</h2>
+      <p>Direct medical product ordering for patient convenience and continuous revenue.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="product-card">
+        <h4>Digital Rechargeable Hearing Aids</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Smart noise cancellation & Bluetooth sync</p>
+        <div class="product-price">₹14,999 onwards</div>
+        <button class="btn-secondary" style="color: var(--primary-dark); border-color: var(--primary-dark); width: 100%;" onclick="openModal('Hearing Aid Inquiry')">Order / Enquire</button>
+      </div>
+
+      <div class="product-card">
+        <h4>Nasal Irrigation & Sinus Care Kit</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Essential post-op & daily sinus clearing</p>
+        <div class="product-price">₹499</div>
+        <button class="btn-secondary" style="color: var(--primary-dark); border-color: var(--primary-dark); width: 100%;" onclick="openModal('Nasal Kit Order')">Buy Now</button>
+      </div>
+
+      <div class="product-card">
+        <h4>Custom Sleep & Swimming Earplugs</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Custom silicone noise & water barrier</p>
+        <div class="product-price">₹799</div>
+        <button class="btn-secondary" style="color: var(--primary-dark); border-color: var(--primary-dark); width: 100%;" onclick="openModal('Custom Earplugs')">Order Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Modal -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <h3 id="modalTitle" style="margin-bottom: 1rem; color: var(--primary-dark);">Book Appointment</h3>
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" required placeholder="Your full name">
         </div>
-    </footer>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" required placeholder="10-digit phone number">
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <select required>
+            <option value="Vadodara">Vadodara</option>
+            <option value="Halol">Halol</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Submit Request</button>
+        <button type="button" onclick="closeModal()" style="width: 100%; margin-top: 0.5rem; background: none; border: none; cursor: pointer; color: var(--text-muted);">Cancel</button>
+      </form>
+    </div>
+  </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/18005550199?text=Hi%2C%20I%20am%20interested%20in%20launching%20a%20high-revenue%20business%20idea!" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.218 3.078.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
+  <footer>
+    <p>© 2026 bharti ENT Hospital (Vadodara & Halol). All Rights Reserved.</p>
+  </footer>
 
-    <!-- App Script -->
-    <script src="app.js"></script>
+  <script>
+    function openModal(serviceName) {
+      document.getElementById('modalTitle').innerText = 'Request: ' + serviceName;
+      document.getElementById('bookingModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('bookingModal').style.display = 'none';
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your request has been received. Our hospital coordinator will contact you shortly.');
+      closeModal();
+    }
+  </script>
 </body>
 </html>
