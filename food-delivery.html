@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoodieDash - Food Delivery</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  body { background: #f5f5f5; color: #222; }
+  a { text-decoration: none; color: inherit; }
+
+  /* Header */
+  header {
+    background: #ff4757;
+    color: #fff;
+    padding: 14px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .logo { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
+  .logo span { color: #ffd32a; }
+  .search-bar {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 30px;
+    position: relative;
+  }
+  .search-bar input {
+    width: 100%;
+    padding: 10px 40px 10px 16px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+  }
+  .search-bar::after {
+    content: "🔍";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .header-actions { display: flex; align-items: center; gap: 18px; }
+  .header-actions button {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+  }
+  .header-actions button:hover { background: #fff; color: #ff4757; }
+  .user-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px 4px 4px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 13px;
+  }
+  .user-chip img {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+  }
+  .user-chip button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 4px;
+  }
+  .cart-btn {
+    position: relative;
+    background: #ffd32a !important;
+    color: #222 !important;
+    border: none !important;
+    font-weight: 600;
+  }
+  .cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #2f3542;
+    color: #fff;
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #ff6b81, #ff4757);
+    color: #fff;
+    padding: 50px 5%;
+    text-align: center;
+  }
+  .hero h1 { font-size: 38px; margin-bottom: 10px; }
+  .hero p { font-size: 17px; opacity: 0.95; }
+
+  /* Categories */
+  .categories {
+    background: #fff;
+    padding: 18px 5%;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .cat-item {
+    flex-shrink: 0;
+    padding: 10px 22px;
+    background: #f1f2f6;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+  }
+  .cat-item:hover, .cat-item.active {
+    background: #ff4757;
+    color: #fff;
+  }
+
+  /* Section heading */
+  .section { padding: 30px 5%; }
+  .section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2f3542;
+  }
+
+  /* Restaurant grid */
+  .restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .restaurant-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .restaurant-card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+  .restaurant-img {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .restaurant-img .rating {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #fff;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2f3542;
+  }
+  .restaurant-img .delivery-time {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+  }
+  .restaurant-info { padding: 14px; }
+  .restaurant-info h3 { font-size: 17px; margin-bottom: 4px; }
+  .restaurant-info .cuisine { color: #747d8c; font-size: 13px; margin-bottom: 8px; }
+  .restaurant-info .price { color: #2ed573; font-weight: 600; font-size: 14px; }
+
+  /* Cart sidebar */
+  .cart-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    display: none;
+  }
+  .cart-overlay.open { display: block; }
+  .cart-sidebar {
+    position: fixed;
+    top: 0; right: -450px;
+    width: 420px;
+    max-width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 201;
+    transition: right 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-sidebar.open { right: 0; }
+  .cart-header {
+    padding: 20px;
+    background: #ff4757;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-header h2 { font-size: 20px; }
+  .close-cart {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .cart-items { flex: 1; overflow-y: auto; padding: 18px; }
+  .cart-empty { text-align: center; color: #747d8c; margin-top: 60px; }
+  .cart-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f2f6;
+  }
+  .cart-item-img {
+    width: 65px;
+    height: 65px;
+    background: #f1f2f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-info h4 { font-size: 14px; margin-bottom: 4px; }
+  .cart-item-info .item-price { color: #2ed573; font-weight: 600; font-size: 14px; }
+  .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .qty-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ced6e0;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .qty-btn:hover { background: #ff4757; color: #fff; border-color: #ff4757; }
+  .remove-btn {
+    background: transparent;
+    border: none;
+    color: #ff4757;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .cart-footer {
+    padding: 18px;
+    border-top: 2px solid #f1f2f6;
+    background: #fafafa;
+  }
+  .cart-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+  .cart-row.total { font-size: 18px; font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ced6e0; }
+  .checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background: #2ed573;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 14px;
+  }
+  .checkout-btn:hover { background: #26ae60; }
+  .checkout-btn:disabled { background: #ced6e0; cursor: not-allowed; }
+
+  /* Menu modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-header {
+    padding: 20px;
+    background: #ff4757;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+  .menu-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f2f6;
+    align-items: center;
+  }
+  .menu-item-emoji { font-size: 42px; flex-shrink: 0; }
+  .menu-item-info { flex: 1; }
+  .menu-item-info h4 { font-size: 16px; margin-bottom: 4px; }
+  .menu-item-info p { color: #747d8c; font-size: 13px; margin-bottom: 6px; }
+  .menu-item-info .item-price { color: #2ed573; font-weight: 600; }
+  .add-btn {
+    background: #ff4757;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .add-btn:hover { background: #ff3344; }
+
+  /* Checkout modal */
+  .checkout-form { display: flex; flex-direction: column; gap: 14px; }
+  .checkout-form label { font-size: 13px; font-weight: 600; color: #2f3542; }
+  .checkout-form input, .checkout-form textarea, .checkout-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced6e0;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+  }
+  .checkout-form input:focus, .checkout-form textarea:focus, .checkout-form select:focus { border-color: #ff4757; }
+  .order-summary-box {
+    background: #f1f2f6;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .order-summary-box .cart-row { font-size: 13px; }
+  .place-order-btn {
+    background: #2ed573;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2f3542;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+  /* Order list panel */
+  .orders-panel {
+    position: fixed;
+    top: 0; left: -450px;
+    width: 420px;
+    max-width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 201;
+    transition: left 0.3s;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+  .orders-panel.open { left: 0; }
+  .orders-header {
+    padding: 20px;
+    background: #2f3542;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .orders-header h2 { font-size: 20px; }
+  .orders-stats {
+    display: flex;
+    gap: 10px;
+    padding: 14px 18px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #f1f2f6;
+  }
+  .stat-box {
+    flex: 1;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .stat-box .num { font-size: 20px; font-weight: 700; color: #ff4757; }
+  .stat-box .lbl { font-size: 11px; color: #747d8c; }
+  .orders-list { flex: 1; overflow-y: auto; padding: 14px 18px; }
+  .order-card {
+    background: #fff;
+    border: 1px solid #f1f2f6;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .order-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .order-id { font-weight: 700; color: #2f3542; font-size: 14px; }
+  .order-status { font-size: 11px; padding: 3px 8px; border-radius: 12px; background: #2ed573; color: #fff; }
+  .order-customer { font-size: 13px; color: #747d8c; margin-bottom: 4px; }
+  .order-items-list { font-size: 12px; color: #2f3542; margin-bottom: 6px; }
+  .order-meta { display: flex; justify-content: space-between; font-size: 12px; color: #747d8c; border-top: 1px dashed #f1f2f6; padding-top: 6px; }
+  .order-total { font-weight: 700; color: #2ed573; }
+  .no-orders { text-align: center; color: #747d8c; margin-top: 40px; }
+
+  /* Login modal */
+  .login-box { text-align: center; padding: 14px 6px; }
+  .login-box h3 { color: #2f3542; margin-bottom: 6px; font-size: 20px; }
+  .login-box p { color: #747d8c; margin-bottom: 22px; font-size: 13px; }
+  .google-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    color: #2f3542;
+    border: 1px solid #ced6e0;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    min-width: 240px;
+    justify-content: center;
+  }
+  .google-btn:hover { background: #f8f9fa; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+  .google-btn img { width: 20px; height: 20px; }
+  .login-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #747d8c;
+    font-size: 12px;
+    margin: 22px 0 14px;
+  }
+  .login-divider::before, .login-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ced6e0;
+  }
+  .email-login-form { display: flex; flex-direction: column; gap: 12px; max-width: 320px; margin: 0 auto; }
+  .email-login-form input {
+    padding: 10px 12px;
+    border: 1px solid #ced6e0;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+  }
+  .email-login-form input:focus { border-color: #ff4757; }
+  .email-login-btn {
+    background: #ff4757;
+    color: #fff;
+    border: none;
+    padding: 11px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .email-login-btn:hover { background: #ff3344; }
+  .login-note { font-size: 11px; color: #747d8c; margin-top: 16px; line-height: 1.5; }
+
+  /* Order success */
+  .success-box { text-align: center; padding: 30px 20px; }
+  .success-box .check { font-size: 70px; margin-bottom: 14px; }
+  .success-box h2 { color: #2ed573; margin-bottom: 8px; }
+  .success-box p { color: #747d8c; margin-bottom: 6px; }
+
+  @media (max-width: 700px) {
+    .search-bar { display: none; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 14px; }
+    .cart-sidebar { width: 100%; right: -100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Foodie<span>Dash</span></div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search restaurants or dishes..." />
+  </div>
+  <div class="header-actions" id="headerActions">
+    <button id="loginBtn" onclick="openLogin()">Login</button>
+    <button class="cart-btn" onclick="toggleOrders()">
+      📋 Orders
+      <span class="cart-count" id="orderCount">0</span>
+    </button>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Delicious food, delivered fast 🚀</h1>
+  <p>Order from the best local restaurants with easy, on-demand delivery.</p>
+</section>
+
+<div class="categories" id="categories"></div>
+
+<section class="section">
+  <h2>Popular Restaurants</h2>
+  <div class="restaurant-grid" id="restaurantGrid"></div>
+</section>
+
+<!-- Cart sidebar -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button class="close-cart" onclick="toggleCart()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Your cart is empty 🍽️</p>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <div class="cart-row"><span>Delivery Fee</span><span id="deliveryFee">$2.99</span></div>
+    <div class="cart-row"><span>Tax</span><span id="tax">$0.00</span></div>
+    <div class="cart-row total"><span>Total</span><span id="total">$0.00</span></div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- Menu modal -->
+<div class="modal-overlay" id="menuModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="menuTitle">Restaurant Menu</h2>
+      <button class="close-cart" onclick="closeMenu()">×</button>
+    </div>
+    <div class="modal-body" id="menuBody"></div>
+  </div>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Checkout</h2>
+      <button class="close-cart" onclick="closeCheckout()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="checkoutContent">
+        <h3 style="margin-bottom:14px;">Order Summary</h3>
+        <div class="order-summary-box" id="orderSummary"></div>
+        <form class="checkout-form" onsubmit="placeOrder(event)">
+          <div>
+            <label>Your Name</label>
+            <input type="text" required placeholder="John Doe" />
+          </div>
+          <div>
+            <label>Delivery Address</label>
+            <textarea rows="2" required placeholder="123 Main St, Apt 4B, City, ZIP"></textarea>
+          </div>
+          <div>
+            <label>Phone Number</label>
+            <input type="tel" required placeholder="+1 555-123-4567" />
+          </div>
+          <div>
+            <label>Payment Method</label>
+            <select required>
+              <option value="">Select payment method</option>
+              <option>💵 Cash on Delivery</option>
+              <option>💳 Credit / Debit Card</option>
+              <option>📱 UPI / Wallet</option>
+            </select>
+          </div>
+          <div>
+            <label>Delivery Instructions (Optional)</label>
+            <textarea rows="2" placeholder="Leave at door, ring bell, etc."></textarea>
+          </div>
+          <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login modal -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal" style="max-width: 440px;">
+    <div class="modal-header">
+      <h2>Sign in to FoodieDash</h2>
+      <button class="close-cart" onclick="closeLogin()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="login-box">
+        <h3>Welcome back 👋</h3>
+        <p>Sign in to track your orders and get personalized recommendations.</p>
+
+        <!-- Google Sign-In button (rendered by GIS SDK or fallback) -->
+        <div id="googleSignInBtn">
+          <button class="google-btn" onclick="googleSignInFallback()">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" onerror="this.outerHTML='<span style=\'font-size:20px;\'>🇬</span>'" />
+            Continue with Google
+          </button>
+        </div>
+
+        <div class="login-divider">OR</div>
+
+        <form class="email-login-form" onsubmit="emailLogin(event)">
+          <input type="email" id="loginEmail" required placeholder="Enter your email" />
+          <button type="submit" class="email-login-btn">Continue with Email</button>
+        </form>
+
+        <p class="login-note">
+          By continuing, you agree to our Terms of Service and Privacy Policy.
+          <br/>To enable real Google login, replace <code>YOUR_GOOGLE_CLIENT_ID</code> in the script with your OAuth Client ID from <a href="https://console.cloud.google.com" target="_blank" style="color:#ff4757;">Google Cloud Console</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- Orders panel (backend view) -->
+<div class="cart-overlay" id="ordersOverlay" onclick="toggleOrders()"></div>
+<div class="orders-panel" id="ordersPanel">
+  <div class="orders-header">
+    <h2>📋 All Orders (Backend)</h2>
+    <button class="close-cart" onclick="toggleOrders()">×</button>
+  </div>
+  <div class="orders-stats">
+    <div class="stat-box">
+      <div class="num" id="totalOrders">0</div>
+      <div class="lbl">Total Orders</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="totalMembers">0</div>
+      <div class="lbl">Members Ordered</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" id="totalRevenue">$0</div>
+      <div class="lbl">Revenue</div>
+    </div>
+  </div>
+  <div class="orders-list" id="ordersList">
+    <p class="no-orders">No orders yet. Place an order to see it here.</p>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // TODO: Replace hardcoded data with API calls to your backend
+  // Example:
+  // const API_BASE_URL = 'http://localhost:3000/api';
+  // async function fetchData() { ... }
+
+  // ---- Data ----
+  const categories = ["All", "Pizza", "Burger", "Sushi", "Indian", "Chinese", "Dessert", "Drinks"];
+
+  const restaurants = [
+    { id: 1, name: "Mario's Pizzeria", cuisine: "Italian, Pizza", rating: 4.7, time: "25-30 min", price: "$$", emoji: "🍕", color: "#ff6b6b" },
+    { id: 2, name: "Burger Hub", cuisine: "American, Burgers", rating: 4.5, time: "20-25 min", price: "$",   emoji: "🍔", color: "#ffa502" },
+    { id: 3, name: "Sakura Sushi", cuisine: "Japanese, Sushi", rating: 4.8, time: "30-35 min", price: "$$$", emoji: "🍣", color: "#ff6348" },
+    { id: 4, name: "Spice Garden", cuisine: "Indian, Curry", rating: 4.6, time: "35-40 min", price: "$$", emoji: "🍛", color: "#eccc68" },
+    { id: 5, name: "Dragon Wok", cuisine: "Chinese, Asian", rating: 4.4, time: "25-30 min", price: "$$", emoji: "🥡", color: "#ff7f50" },
+    { id: 6, name: "Sweet Tooth", cuisine: "Desserts, Cakes", rating: 4.9, time: "15-20 min", price: "$$", emoji: "🍰", color: "#ffb8b8" },
+    { id: 7, name: "Beverage Bar", cuisine: "Drinks, Juices", rating: 4.3, time: "10-15 min", price: "$",  emoji: "🥤", color: "#70a1ff" },
+    { id: 8, name: "Pizza Palace", cuisine: "Italian, Pizza", rating: 4.5, time: "30-35 min", price: "$$", emoji: "🍕", color: "#ff4757" },
+  ];
+
+  const menus = {
+    1: [
+      { id: 101, name: "Margherita Pizza",   desc: "Classic tomato, mozzarella, fresh basil", price: 12.99, emoji: "🍕" },
+      { id: 102, name: "Pepperoni Pizza",    desc: "Loaded with spicy pepperoni & cheese",   price: 14.99, emoji: "🍕" },
+      { id: 103, name: "BBQ Chicken Pizza",  desc: "Smoky BBQ sauce, chicken, red onions",   price: 15.99, emoji: "🍕" },
+      { id: 104, name: "Garlic Bread",       desc: "Toasted bread with garlic butter",        price: 5.99,  emoji: "🥖" },
+    ],
+    2: [
+      { id: 201, name: "Classic Cheeseburger", desc: "Beef patty, cheddar, lettuce, tomato", price: 9.99,  emoji: "🍔" },
+      { id: 202, name: "Double Bacon Burger",  desc: "Two patties, crispy bacon, special sauce", price: 12.99, emoji: "🍔" },
+      { id: 203, name: "Veggie Burger",        desc: "Plant-based patty with avocado",        price: 10.99, emoji: "🍔" },
+      { id: 204, name: "French Fries",         desc: "Crispy golden fries with dipping sauce", price: 4.99, emoji: "🍟" },
+    ],
+    3: [
+      { id: 301, name: "Salmon Nigiri (8pc)",  desc: "Fresh salmon over seasoned rice",     price: 16.99, emoji: "🍣" },
+      { id: 302, name: "California Roll",      desc: "Crab, avocado, cucumber",            price: 11.99, emoji: "🍣" },
+      { id: 303, name: "Spicy Tuna Roll",      desc: "Tuna with spicy mayo",               price: 13.99, emoji: "🍣" },
+      { id: 304, name: "Miso Soup",            desc: "Traditional soybean broth",         price: 4.50,  emoji: "🍜" },
+    ],
+    4: [
+      { id: 401, name: "Chicken Tikka Masala", desc: "Creamy tomato curry with tender chicken", price: 13.99, emoji: "🍛" },
+      { id: 402, name: "Paneer Butter Masala", desc: "Cottage cheese in rich tomato gravy",  price: 12.99, emoji: "🍛" },
+      { id: 403, name: "Garlic Naan",          desc: "Soft bread with garlic & butter",        price: 3.99,  emoji: "🫓" },
+      { id: 404, name: "Biryani",              desc: "Fragrant basmati rice with spices",     price: 14.99, emoji: "🍚" },
+    ],
+    5: [
+      { id: 501, name: "Kung Pao Chicken",     desc: "Spicy chicken with peanuts & veggies", price: 12.99, emoji: "🥡" },
+      { id: 502, name: "Vegetable Fried Rice", desc: "Wok-tossed rice with mixed vegetables", price: 10.99, emoji: "🍚" },
+      { id: 503, name: "Spring Rolls (4pc)",   desc: "Crispy rolls with sweet chili sauce",   price: 6.99,  emoji: "🥟" },
+      { id: 504, name: "Sweet & Sour Pork",    desc: "Crispy pork in tangy sweet sauce",      price: 13.99, emoji: "🥡" },
+    ],
+    6: [
+      { id: 601, name: "Chocolate Lava Cake",  desc: "Warm cake with molten chocolate center", price: 6.99, emoji: "🍫" },
+      { id: 602, name: "Cheesecake Slice",     desc: "Creamy New York style cheesecake",       price: 5.99, emoji: "🍰" },
+      { id: 603, name: "Tiramisu",             desc: "Classic Italian coffee-flavored dessert", price: 7.99, emoji: "🍮" },
+      { id: 604, name: "Ice Cream Sundae",     desc: "Three scoops with toppings",             price: 5.49, emoji: "🍨" },
+    ],
+    7: [
+      { id: 701, name: "Mango Smoothie",       desc: "Fresh mango blended with yogurt",        price: 5.99, emoji: "🥭" },
+      { id: 702, name: "Iced Coffee",          desc: "Cold brew with milk",                    price: 4.49, emoji: "☕" },
+      { id: 703, name: "Fresh Lemonade",       desc: "Squeezed lemons with mint",              price: 3.99, emoji: "🍋" },
+      { id: 704, name: "Green Tea",            desc: "Hot traditional green tea",              price: 2.99, emoji: "🍵" },
+    ],
+    8: [
+      { id: 801, name: "Hawaiian Pizza",       desc: "Ham, pineapple, mozzarella",             price: 13.99, emoji: "🍕" },
+      { id: 802, name: "Four Cheese Pizza",    desc: "Mozzarella, cheddar, parmesan, gouda",   price: 15.49, emoji: "🍕" },
+      { id: 803, name: "Veggie Supreme",       desc: "Loaded with fresh vegetables",           price: 14.49, emoji: "🍕" },
+      { id: 804, name: "Caesar Salad",         desc: "Romaine, croutons, parmesan dressing",   price: 8.99,  emoji: "🥗" },
+    ],
+  };
+
+  // ---- State ----
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  let activeCategory = "All";
+
+  // ---- Simulated Backend (localStorage as DB) ----
+  // In production, replace with real API calls to your server.
+  // const API_BASE = 'http://localhost:3000/api';
+  // async function backendGet(endpoint) { return (await fetch(API_BASE + endpoint)).json(); }
+  // async function backendPost(endpoint, data) { return (await fetch(API_BASE + endpoint, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)})).json(); }
+
+  // ---- Auth (Google + Email) ----
+  // To enable real Google Sign-In, set your OAuth Client ID below.
+  // Get one at: https://console.cloud.google.com/apis/credentials
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+
+  function backendGetCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser') || 'null');
+  }
+
+  function backendLogin(user) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    // Also save to backend "members" list for the orders panel
+    const members = JSON.parse(localStorage.getItem('members') || '[]');
+    if (!members.find(m => m.email.toLowerCase() === user.email.toLowerCase())) {
+      members.push({ name: user.name, email: user.email, picture: user.picture || '', joinedAt: new Date().toISOString() });
+      localStorage.setItem('members', JSON.stringify(members));
+    }
+    refreshOrderStats();
+    renderUserChip();
+  }
+
+  function backendLogout() {
+    localStorage.removeItem('currentUser');
+    if (window.google && google.accounts && google.accounts.id) {
+      google.accounts.id.disableAutoSelect();
+    }
+    renderUserChip();
+    showToast('Logged out');
+  }
+
+  function renderUserChip() {
+    const user = backendGetCurrentUser();
+    const container = document.getElementById('headerActions');
+    if (user) {
+      container.innerHTML = `
+        <div class="user-chip">
+          <img src="${user.picture || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.name) + '&background=ff4757&color=fff'}" alt="${user.name}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=ff4757&color=fff'" />
+          <span>${user.name}</span>
+          <button onclick="backendLogout()" title="Logout">⏻</button>
+        </div>
+        <button class="cart-btn" onclick="toggleOrders()">
+          📋 Orders
+          <span class="cart-count" id="orderCount">0</span>
+        </button>
+        <button class="cart-btn" onclick="toggleCart()">
+          🛒 Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      `;
+      document.getElementById('orderCount').textContent = backendGetOrders().length;
+    } else {
+      container.innerHTML = `
+        <button onclick="openLogin()">Login</button>
+        <button class="cart-btn" onclick="toggleOrders()">
+          📋 Orders
+          <span class="cart-count" id="orderCount">0</span>
+        </button>
+        <button class="cart-btn" onclick="toggleCart()">
+          🛒 Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      `;
+      document.getElementById('orderCount').textContent = backendGetOrders().length;
+    }
+  }
+
+  function openLogin() {
+    document.getElementById('loginModal').classList.add('open');
+  }
+
+  function closeLogin() {
+    document.getElementById('loginModal').classList.remove('open');
+  }
+
+  // Google Sign-In handler (called by GIS SDK with credential JWT)
+  function handleGoogleCredentialResponse(response) {
+    try {
+      // Decode the JWT payload (no verification — for demo only)
+      const payload = parseJwt(response.credential);
+      const user = {
+        name: payload.name || payload.given_name || 'Google User',
+        email: payload.email,
+        picture: payload.picture,
+        provider: 'google'
+      };
+      backendLogin(user);
+      closeLogin();
+      showToast(`Welcome, ${user.name}! 👋`);
+    } catch (e) {
+      console.error('Google sign-in failed', e);
+      showToast('Google sign-in failed');
+    }
+  }
+
+  function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+      '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    ).join(''));
+    return JSON.parse(jsonPayload);
+  }
+
+  // Initialize Google Identity Services when ready
+  function initGoogleSignIn() {
+    if (GOOGLE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com') {
+      console.warn('Google Client ID not set — using demo fallback.');
+      return;
+    }
+    if (window.google && google.accounts && google.accounts.id) {
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredentialResponse,
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+      google.accounts.id.renderButton(
+        document.getElementById('googleSignInBtn'),
+        { theme: 'outline', size: 'large', width: 280, text: 'continue_with', logo_alignment: 'left' }
+      );
+    }
+  }
+  window.addEventListener('load', () => {
+    setTimeout(initGoogleSignIn, 500);
+  });
+
+  // Fallback "Continue with Google" — simulates a Google login for demo
+  function googleSignInFallback() {
+    // Simulate Google account picker → creates a fake Google user
+    const fakeGoogleUsers = [
+      { name: 'Aarav Patel', email: 'aarav.patel@gmail.com', picture: 'https://ui-avatars.com/api/?name=Aarav+Patel&background=4285F4&color=fff' },
+      { name: 'Priya Sharma', email: 'priya.sharma@gmail.com', picture: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=EA4335&color=fff' },
+      { name: 'Demo User',    email: 'demo.user@gmail.com',    picture: 'https://ui-avatars.com/api/?name=Demo+User&background=34A853&color=fff' }
+    ];
+    const user = fakeGoogleUsers[Math.floor(Math.random() * fakeGoogleUsers.length)];
+    user.provider = 'google';
+    backendLogin(user);
+    closeLogin();
+    showToast(`Welcome, ${user.name}! (Google demo) 👋`);
+  }
+
+  // Email/password-less login (demo only)
+  function emailLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    if (!email) return;
+    const name = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const user = {
+      name: name,
+      email: email,
+      picture: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=ff4757&color=fff`,
+      provider: 'email'
+    };
+    backendLogin(user);
+    closeLogin();
+    showToast(`Welcome, ${user.name}! 👋`);
+  }
+
+  function backendGetOrders() {
+    return JSON.parse(localStorage.getItem('orders') || '[]');
+  }
+
+  function backendSaveOrder(order) {
+    const orders = backendGetOrders();
+    orders.unshift(order); // newest first
+    localStorage.setItem('orders', JSON.stringify(orders));
+    refreshOrderStats();
+  }
+
+  function refreshOrderStats() {
+    const orders = backendGetOrders();
+    // Count unique members who have placed orders (by email if logged in, else by name)
+    const uniqueMembers = new Set(orders.map(o =>
+      (o.customerEmail || o.customerName).toLowerCase()
+    )).size;
+    const revenue = orders.reduce((sum, o) => sum + o.total, 0);
+    document.getElementById('orderCount').textContent = orders.length;
+    document.getElementById('totalOrders').textContent = orders.length;
+    document.getElementById('totalMembers').textContent = uniqueMembers;
+    document.getElementById('totalRevenue').textContent = '$' + revenue.toFixed(2);
+  }
+
+  // ---- Init ----
+  renderCategories();
+  renderRestaurants();
+  updateCartUI();
+  refreshOrderStats();
+  renderUserChip();
+
+  // ---- Categories ----
+  function renderCategories() {
+    const container = document.getElementById('categories');
+    container.innerHTML = categories.map(cat =>
+      `<div class="cat-item ${cat === activeCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat}</div>`
+    ).join('');
+  }
+
+  function filterCategory(cat) {
+    activeCategory = cat;
+    renderCategories();
+    renderRestaurants();
+  }
+
+  // ---- Restaurants ----
+  function renderRestaurants() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const grid = document.getElementById('restaurantGrid');
+    const filtered = restaurants.filter(r => {
+      const matchCat = activeCategory === "All" || r.cuisine.toLowerCase().includes(activeCategory.toLowerCase());
+      const matchSearch = !search || r.name.toLowerCase().includes(search) || r.cuisine.toLowerCase().includes(search);
+      return matchCat && matchSearch;
+    });
+
+    if (!filtered.length) {
+      grid.innerHTML = '<p style="color:#747d8c;">No restaurants found.</p>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(r => `
+      <div class="restaurant-card" onclick="openMenu(${r.id})">
+        <div class="restaurant-img" style="background:${r.color};display:flex;align-items:center;justify-content:center;font-size:80px;">
+          ${r.emoji}
+          <span class="rating">⭐ ${r.rating}</span>
+          <span class="delivery-time">${r.time}</span>
+        </div>
+        <div class="restaurant-info">
+          <h3>${r.name}</h3>
+          <p class="cuisine">${r.cuisine}</p>
+          <p class="price">${r.price} • Min. order $10</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Search listener
+  document.getElementById('searchInput').addEventListener('input', renderRestaurants);
+
+  // ---- Menu modal ----
+  function openMenu(id) {
+    const restaurant = restaurants.find(r => r.id === id);
+    const items = menus[id] || [];
+    document.getElementById('menuTitle').textContent = restaurant.name;
+    document.getElementById('menuBody').innerHTML = items.map(item => `
+      <div class="menu-item">
+        <div class="menu-item-emoji">${item.emoji}</div>
+        <div class="menu-item-info">
+          <h4>${item.name}</h4>
+          <p>${item.desc}</p>
+          <span class="item-price">$${item.price.toFixed(2)}</span>
+        </div>
+        <button class="add-btn" onclick="addToCart(${item.id}, ${id})">+ Add</button>
+      </div>
+    `).join('');
+    document.getElementById('menuModal').classList.add('open');
+  }
+
+  function closeMenu() { document.getElementById('menuModal').classList.remove('open'); }
+
+  // ---- Cart ----
+  function addToCart(itemId, restaurantId) {
+    const item = menus[restaurantId].find(m => m.id === itemId);
+    const existing = cart.find(c => c.id === itemId);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ ...item, qty: 1 });
+    }
+    saveCart();
+    updateCartUI();
+    showToast(`${item.name} added to cart`);
+  }
+
+  function changeQty(id, delta) {
+    const item = cart.find(c => c.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+    saveCart();
+    updateCartUI();
+  }
+
+  function removeItem(id) {
+    cart = cart.filter(c => c.id !== id);
+    saveCart();
+    updateCartUI();
+  }
+
+  function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
+
+  function updateCartUI() {
+    document.getElementById('cartCount').textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+    const container = document.getElementById('cartItems');
+    const footer = document.getElementById('cartFooter');
+
+    if (!cart.length) {
+      container.innerHTML = '<p class="cart-empty">Your cart is empty 🍽️</p>';
+      footer.style.display = 'none';
+      return;
+    }
+
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-img">${item.emoji}</div>
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <span class="item-price">$${(item.price * item.qty).toFixed(2)}</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+          </div>
+        </div>
+        <button class="remove-btn" onclick="removeItem(${item.id})">🗑️</button>
+      </div>
+    `).join('');
+
+    const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const tax = subtotal * 0.08;
+    const delivery = 2.99;
+    const total = subtotal + tax + delivery;
+    document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+    document.getElementById('deliveryFee').textContent = `$${delivery.toFixed(2)}`;
+    document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    footer.style.display = 'block';
+  }
+
+  function toggleCart() {
+    document.getElementById('cartSidebar').classList.toggle('open');
+    document.getElementById('cartOverlay').classList.toggle('open');
+    // Close orders panel if open
+    document.getElementById('ordersPanel').classList.remove('open');
+  }
+
+  // ---- Checkout ----
+  function openCheckout() {
+    if (!cart.length) return;
+    toggleCart();
+    const summary = document.getElementById('orderSummary');
+    const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const tax = subtotal * 0.08;
+    const total = subtotal + tax + 2.99;
+    summary.innerHTML = cart.map(item => `
+      <div class="cart-row"><span>${item.emoji} ${item.name} × ${item.qty}</span><span>$${(item.price * item.qty).toFixed(2)}</span></div>
+    `).join('') + `
+      <div class="cart-row" style="margin-top:8px;"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+      <div class="cart-row"><span>Tax</span><span>$${tax.toFixed(2)}</span></div>
+      <div class="cart-row"><span>Delivery</span><span>$2.99</span></div>
+      <div class="cart-row total"><span>Total</span><span>$${total.toFixed(2)}</span></div>
+    `;
+    document.getElementById('checkoutModal').classList.add('open');
+  }
+
+  function closeCheckout() { document.getElementById('checkoutModal').classList.remove('open'); }
+
+  function placeOrder(event) {
+    event.preventDefault();
+    const form = event.target;
+    const address = form.querySelector('textarea').value;
+    const loggedInUser = backendGetCurrentUser();
+    const customerName = loggedInUser ? loggedInUser.name : (form.querySelector('input[type="text"]')?.value || 'Guest User');
+    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0) * 1.08 + 2.99;
+    const orderId = 'FD' + Math.floor(100000 + Math.random() * 900000);
+
+    // --- Save order to simulated backend ---
+    const order = {
+      id: orderId,
+      customerName: customerName,
+      customerEmail: loggedInUser ? loggedInUser.email : '',
+      provider: loggedInUser ? loggedInUser.provider : 'guest',
+      address: address,
+      items: cart.map(i => ({ name: i.name, qty: i.qty, price: i.price, emoji: i.emoji })),
+      total: total,
+      status: 'Confirmed',
+      placedAt: new Date().toISOString()
+    };
+    backendSaveOrder(order);
+
+    document.getElementById('checkoutContent').innerHTML = `
+      <div class="success-box">
+        <div class="check">✅</div>
+        <h2>Order Confirmed!</h2>
+        <p>Your order <strong>#${orderId}</strong> has been placed.</p>
+        <p>Total paid: <strong>$${total.toFixed(2)}</strong></p>
+        <p style="margin-top:14px;">Estimated delivery: 30-40 minutes</p>
+        <button class="place-order-btn" style="margin-top:20px;" onclick="finishOrder()">Continue Browsing</button>
+      </div>
+    `;
+    cart = [];
+    saveCart();
+    updateCartUI();
+  }
+
+  function finishOrder() {
+    closeCheckout();
+    showToast('Order placed successfully! 🎉');
+  }
+
+  // ---- Orders panel (backend view) ----
+  function toggleOrders() {
+    document.getElementById('ordersPanel').classList.toggle('open');
+    document.getElementById('ordersOverlay').classList.toggle('open');
+    renderOrders();
+  }
+
+  function renderOrders() {
+    const orders = backendGetOrders();
+    const list = document.getElementById('ordersList');
+    if (!orders.length) {
+      list.innerHTML = '<p class="no-orders">No orders yet. Place an order to see it here.</p>';
+      return;
+    }
+    list.innerHTML = orders.map(o => {
+      const itemsText = o.items.map(i => `${i.emoji} ${i.name} ×${i.qty}`).join(', ');
+      const date = new Date(o.placedAt).toLocaleString();
+      return `
+        <div class="order-card">
+          <div class="order-card-top">
+            <span class="order-id">#${o.id}</span>
+            <span class="order-status">${o.status}</span>
+          </div>
+          <div class="order-customer">👤 ${o.customerName} • 📍 ${o.address.substring(0, 30)}${o.address.length > 30 ? '...' : ''}</div>
+          <div class="order-items-list">${itemsText}</div>
+          <div class="order-meta">
+            <span>${date}</span>
+            <span class="order-total">$${o.total.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ---- Toast ----
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+</script>
+</body>
+</html>
